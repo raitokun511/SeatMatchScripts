@@ -305,6 +305,7 @@ public class Board : MonoBehaviour
                 }
                 numberCitizen = -1;
                 state = BoardState.Win;
+                GameMainController.gameState = GameState.Win;
             }
         }
         //state = BoardState.CitizenRun;

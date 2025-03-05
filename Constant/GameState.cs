@@ -5,5 +5,9 @@ using UnityEngine;
 public enum GameState
 {
     None,
-    Playing
+    Playing,
+    WaitMenu,
+    Win,
+    CheckContinue,
+    Fail
 }

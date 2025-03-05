@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,10 @@ public class GameMainController : MonoBehaviour
     GameObject boardObject;
     [SerializeField]
     GameObject[] ConfettiEffect;
+    [SerializeField]
+    MenuController menuController;
 
-    public GameState gameState;
+    public static GameState gameState;
     public static float Time;
 
     Board board;
@@ -45,6 +48,29 @@ public class GameMainController : MonoBehaviour
         {
             return;
         }
+        if (gameState == GameState.Win)
+        {
+            gameState = GameState.WaitMenu;
+            StartCoroutine(DoAfter(1f, () => {
+                menuController.ShowWinPanel();
+            }));
+        }
+        if (gameState == GameState.CheckContinue)
+        {
+            menuController.ShowContinuePanel();
+            gameState = GameState.WaitMenu;
+        }
+        if (gameState == GameState.Fail)
+        {
+            menuController.ShowFailPanel();
+            gameState = GameState.Fail;
+        }
 
+    }
+
+    IEnumerator DoAfter(float time, Action task)
+    {
+        yield return new WaitForSeconds(time);
+        task.Invoke();
     }
 }
