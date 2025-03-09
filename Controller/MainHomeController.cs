@@ -26,8 +26,10 @@ public class MainHomeController : MonoBehaviour
     public GameObject livePrefab;
 
     public RectTransform[] screens; // Chứa các RectTransform của 3 màn hình
-    //public DataLoader data;
+    public HomeRankingController rankingController;
+    public HomeDailyController homeDailyController;
     
+    //public DataLoader data;
 
     private int ScreenIndex = 0;
     private Vector2 touchStartPos;
